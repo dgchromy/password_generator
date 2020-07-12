@@ -16,6 +16,13 @@ body{
     min-height: 100vh;
 
 }
+#clipboard{
+    box-sizing: border-box;
+    display: flex;
+    align-content: center;
+    text-align: center;
+    font-size: 10px;
+}
 p{
     margin: .5rem;
 }
@@ -41,11 +48,12 @@ input[type="checkbox"]{
     justify-content: flex-start;
     align-items: center;
     position: relative;
-    font-size: 18px;
+    font-size: 12px;
     letter-spacing: 1px;
     padding: 12px 10px;
     height: 50px;
     width: 100%;
+    word-break: break-all;
 }
 
 .result-container .btn {
