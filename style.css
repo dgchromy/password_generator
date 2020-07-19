@@ -16,7 +16,7 @@ body{
     min-height: 100vh;
 
 }
-#clipboard{
+#copy{
     box-sizing: border-box;
     display: flex;
     align-content: center;
@@ -81,6 +81,7 @@ input[type="checkbox"]{
 .btn-large {
     display: block;
     width: 100%;
+
 }
 .setting {
     display: flex;

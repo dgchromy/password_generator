@@ -1,57 +1,57 @@
 //DOM elements 
-const resultEl = document.getElementById("result");
-const lengthEl = document.getElementById("length");
-const uppercaseEl = document.getElementById("uppercase");
-const lowercaseEl = document.getElementById("lowercase");
-const numbersEl = document.getElementById("numbers");
-const symbolsEl = document.getElementById("symbols");
-const generateEl = document.getElementById("generate");
-const clipboardEl = document.getElementById("clipboard");
+const outputEL = document.getElementById("result");
+const passLength = document.getElementById("length");
+const upperCaseBtn = document.getElementById("uppercase");
+const lowerCaseBtn = document.getElementById("lowercase");
+const numerBtn = document.getElementById("number");
+const symbolBtn = document.getElementById("symbol");
+const generatePassBtn = document.getElementById("generate");
+const copyBtnEl = document.getElementById("copy");
 
 
 const randomFunc = {
     lower: getRandomLower,
-    upper: getRandomUpper,
+    upper: getRandomUpper, 
     number: getRandomNumber,
     symbol: getRandomSymbol,
 };
 
-clipboardEl.addEventListener("click", () => {
-    const textarea = document.createElement("textarea");
-    const password = resultEl.innerText;
+copyBtnEl.addEventListener("click", () => {
+    const textBox = document.createElement("textBox");
+    const password = outputEL.innerText;
     if(!password){
         return;
     }
-    textarea.value = password;
-    document.body.appendChild(textarea);
-    textarea.select();
+    textBox.value = password;
+    document.body.appendChild(textBox);
+    textBox.select();
     document.execCommand("copy");
-    textarea.remove();
-    alert("Copied to clipboard");
+    textBox.remove();
+    alert("Copied");
 });
 
 // generate event listen.//
 
 
-generateEl.addEventListener("click", () => {
- const length = +lengthEl.value; 
- const hasLower = lowercaseEl.checked;
- const hasUpper = uppercaseEl.checked;   
- const hasNumber = numbersEl.checked;   
- const hasSymbol = symbolsEl.checked;      
+generatePassBtn.addEventListener("click", () => {
+ const length = +passLength.value; 
+ const lower = lowerCaseBtn.checked;
+ const upper = upperCaseBtn.checked;   
+ const number = numerBtn.checked;   
+ const symbol = symbolBtn.checked;      
  
- resultEl.innerText = generatePassword(
-     hasLower,
-     hasUpper,
-     hasNumber,
-     hasSymbol,
+ outputEL.innerText = generatePassword(
+     lower,
+     upper,
+     number,
+     symbol,
      length
      );
     
 });
 
 // generate event listen.//
-function generatePassword(lower, upper, number, symbol, length){
+ function generatePassword(lower, upper, number, symbol, length){
     //1. intiate pass variable 2. filter out unchecked types 3. loop over the lenght call generator functionfor each type
 //add final pass to the pw var and return//
  let generatePassword ="";
@@ -72,13 +72,11 @@ for(let i = 0; i< length; i += typesCount){
         generatePassword += randomFunc[funcName]();
     });
  }
- const finalPassword = generatePassword.slice(0, length);
+ const userPassword = generatePassword.slice(0, length);
 
-return finalPassword;
+return userPassword;
 }
  // ".filter is a high order array method that we loop threw each item based on a true or flase value will filter out if it is true or false  "//
-
-// Generator functions - http://www.net-comber.com/charset.html
 
 function getRandomLower() { 
 return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
